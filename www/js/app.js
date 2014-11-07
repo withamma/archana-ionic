@@ -31,8 +31,8 @@ app.controller("MainCtrl", function($scope, $ionicSideMenuDelegate) {
 
 app.controller("IndexCtrl", function($scope, $cordovaFile) {
     $cordovaFile.checkFile("file:///android_asset/www/index.json").then(function(result) {
-        $scope.item = "SUCCESS!";
+        $scope.test = "SUCCESS!";
     }, function(err) {
-        $scope.item = "FAILURE!;
+        $scope.test = "FAILURE!"+err;
     });
 });
