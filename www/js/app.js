@@ -21,18 +21,24 @@ app.run(function($ionicPlatform) {
 });
 
 app.controller("MainCtrl", function($scope, $ionicSideMenuDelegate) {
-    $scope.toggleLeftSideMenu = function() {
-        $ionicSideMenuDelegate.toggleLeft();
-    };
-    $scope.toggleRightSideMenu = function() {
-        $ionicSideMenuDelegate.toggleRight();
-    };
+  $scope.toggleLeftSideMenu = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+  $scope.toggleRightSideMenu = function() {
+    $ionicSideMenuDelegate.toggleRight();
+  };
 });
 
-app.controller("IndexCtrl", function($scope, $cordovaFile) {
-    $cordovaFile.checkFile("file:///android_asset/www/index.json").then(function(result) {
-        $scope.test = "SUCCESS!";
+app.controller("SideMenuIndexCtrl", function($scope, $cordovaFile, $http, $ionicPlatform) {
+  $ionicPlatform.ready().then(function() {
+    $cordovaFile.readAsText('/data/data/com.ionicframework.archanaapp900595/learning-items.json').then(function(result) {
+      $scope.test = ":)";
     }, function(err) {
-        $scope.test = "FAILURE!"+err;
+      $http.get('http://archana.withamma.com/learning-items.json').then(function(success) {
+        $scope.index = success.data;
+      }, function(err) {
+        $scope.test = ":( " + err;
+      });
     });
+  });
 });

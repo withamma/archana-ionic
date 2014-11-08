@@ -29,19 +29,29 @@
                 <button class="button button-icon icon ion-gear-b" ng-click="toggleRightSideMenu()"></button>
             </ion-header-bar>
             <ion-content>
-            <p>
-                Information about the app <br>
-                <strong> OR </strong> <br>
-                Display here
-             </p>
+            <section ui-view>    
+                <h2 align="center">
+                    WELCOME TO ARCHANA WITH AMMA!
+                </h2>
+                <p align="center">
+                    This is a virtual archana book. <br>
+                    On the left are the things included in the book. <br>
+                    On the right are settings that you can change to best suit you. <br>
+                    Questions? Feedback? Send me an email at <strong>nachiketjoshi6@gmail.com</strong>. <br>
+                    We hope you enjoy the app!
+                </p>
+            </section>
             </ion-content>
         </ion-side-menu-content>
-        <ion-side-menu side="left">
+        <ion-side-menu width="500" side="left">
             <ion-header-bar class="bar-calm">
                 <h1 class="title"> Index </h1>
             </ion-header-bar>
             <ion-content ng-controller="SideMenuIndexCtrl">
-                <p ng-bind="test"></p>
+                <ul class="list">
+                    <li menu-close class="item" ng-repeat="item in index" ng-bind="item.title">
+                    </li>
+                </ul>
             </ion-content>
         </ion-side-menu>
         <ion-side-menu side="right">
